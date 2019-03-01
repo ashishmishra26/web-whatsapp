@@ -34,7 +34,7 @@ app.use(logger('dev'));
 app.use('/api', apiRouter);
 
 // setup route paths
-app.post('/add', function(req, res) {
+app.post('/', function(req, res) {
     console.log('post', req)
 });
 

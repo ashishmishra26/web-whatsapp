@@ -7,9 +7,13 @@ const server = {
         return Axios.get(MODE_URL.local+uri, options);
     },
     post : (uri, options) => {
-        return Axios.post(MODE_URL.local+uri, options).then(res => {
-            console.log(res);
-        }).catch(console.error);
+       return Axios({
+            method: 'post',
+            url: MODE_URL.local+uri,
+            data: options
+        }).catch(error => {
+            console.log(error.message);
+        });
     }
 }
 
