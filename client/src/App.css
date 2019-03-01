@@ -5,6 +5,7 @@
   flex-direction: row;
   font-family: 'Poppins';
   box-sizing: border-box;
+  overflow-x: scroll;
 }
 
 .sidebar {
@@ -92,6 +93,11 @@
   color: rgb(127, 127, 230);
 }
 
+.contact {
+  height: calc(100vh - 14vh);
+  overflow-y: scroll;
+}
+
 .contact-card {
   display: flex;
   flex-direction: row;
@@ -136,7 +142,17 @@
   padding: 10px;
   padding-right: 15px;
   text-overflow: ellipsis;
-  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.contact-title {
+  margin-left: 50px;
+  font-size: 20px;
+  color: gray
+}
+
+.hide {
+  display: none;
 }
 
 .image-text {

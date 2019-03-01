@@ -1,0 +1,33 @@
+{
+  "name": "webwhatsapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "SocketServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashishmishra26/web-whatsapp.git"
+  },
+  "keywords": [
+    "whatsapp"
+  ],
+  "author": "Ashish Mishra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashishmishra26/web-whatsapp/issues"
+  },
+  "homepage": "https://github.com/ashishmishra26/web-whatsapp#readme",
+  "dependencies": {
+    "mongoose": "^5.4.16",
+    "socket.io": "^2.2.0",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "cors": "^2.8.4",
+    "csvtojson": "^2.0.8",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "morgan": "^1.9.1"
+  }
+}

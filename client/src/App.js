@@ -3,6 +3,7 @@ import './App.css';
 import SideBar from './components/SideBar';
 import ChatSection from './components/ChatSection';
 import users from './data/users';
+import server from './utils/apiServices';
 
 class App extends Component {
   constructor(props) {
@@ -10,8 +11,8 @@ class App extends Component {
     this.state = {
       currentUser: users[0].name,
       allContact: users,
-      contactedContact: [...users.slice(1,6)],
-      reciever: users[1].name,
+      contactedContact: [users[1]],
+      reciever: '',
       conversation: []
     }
   }
@@ -31,6 +32,13 @@ class App extends Component {
 
   updateConversation = (conversation) => {
     this.setState({conversation: conversation});
+  }
+
+  componentDidMount = () => {
+    server.get('/api').then((response) => {
+      console.log(response.data);
+      this.setState({conversation: response.data})
+    })
   }
 }
 
