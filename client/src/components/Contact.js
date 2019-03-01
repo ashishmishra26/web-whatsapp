@@ -20,9 +20,9 @@ export default class Contact extends Component {
     })
     return (
       <div className="contact">
-        <p className={visibleContact.length ? 'contact-title' : 'contact-title hide'}>Chats</p>
+        <p className={isActive ? 'contact-title': 'hide'}>Chats</p>
         {visibleContact}
-        <p className={otherContacts.length ? 'contact-title' : 'contact-title hide'}>Contacts</p>
+        <p className={isActive ? 'contact-title': 'hide'}>Contacts</p>
         {isActive && otherContacts}
       </div>
     )

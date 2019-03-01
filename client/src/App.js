@@ -31,13 +31,24 @@ class App extends Component {
   }
 
   updateConversation = (conversation) => {
-    this.setState({conversation: conversation});
+    server.post('/api/', conversation).then((response) => {
+      console.log(response);
+    }).catch(err => {
+      console.log(err);
+    });
+    // server.get('/api').then((response) => {
+    //   this.setState({conversation: response.data})
+    // })
+    let conv = [...this.state.conversation, conversation];
+    this.setState({conversation: conv});
   }
 
-  componentDidMount = () => {
+  componentDidMount () {
+    console.log('hi');
     server.get('/api').then((response) => {
-      console.log(response.data);
-      this.setState({conversation: response.data})
+      this.setState({conversation: response.data});
+    }).catch(err => {
+      console.log(err);
     })
   }
 }

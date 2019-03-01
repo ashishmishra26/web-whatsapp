@@ -4,8 +4,12 @@ const MODE_URL = {
 }
 const server = {
     get : (uri, options) => {
-        console.log(MODE_URL.local+uri);
         return Axios.get(MODE_URL.local+uri, options);
+    },
+    post : (uri, options) => {
+        return Axios.post(MODE_URL.local+uri, options).then(res => {
+            console.log(res);
+        }).catch(console.error);
     }
 }
 

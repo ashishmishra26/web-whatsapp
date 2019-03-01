@@ -12,7 +12,7 @@ const app = express();
 const router = express.Router();
 
 // connect to mongoDB through mongoose
-mongoose.connect(process.env.DB_URL || 'mongodb://localhost/shipmentDashboardDB');
+mongoose.connect(process.env.DB_URL);
 mongoose.connection.once('open', () => {
     console.log('Database connection has been made...');
 }).on('error', (error) => {
@@ -34,9 +34,9 @@ app.use(logger('dev'));
 app.use('/api', apiRouter);
 
 // setup route paths
-// app.get('/', function(req, res) {
-//     res.send({type:'get'});
-// });
+app.post('/add', function(req, res) {
+    console.log('post', req)
+});
 
 // listen for requests
 app.listen(process.env.PORT || 4000, () => {
