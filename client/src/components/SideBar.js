@@ -11,13 +11,13 @@ export default class SideBar extends Component {
     }
   }
   render() {
-    let {allContact, contactedContact} = this.props,
+    let {allContact, contactedContact, changeReciever} = this.props,
     {searchText} = this.state;
     return (
       <div className="sidebar">
         <Header class="left-header"/>
         <SearchBox searchText={searchText} handleSearchText={this.handleSearchText}/>
-        <Contact allContact={allContact} contactedContact={contactedContact} searchText={searchText}/>
+        <Contact allContact={allContact} contactedContact={contactedContact} searchText={searchText} changeReciever={changeReciever}/>
       </div>
     )
   }

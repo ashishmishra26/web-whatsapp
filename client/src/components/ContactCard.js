@@ -4,7 +4,7 @@ export default class ContactCard extends Component {
   render() {
     let {data} = this.props;  
     return (
-      <div className="contact-card">
+      <div className="contact-card" onClick={()=>{this.handleClick(data)}}>
         <div className="contact-card-image-container">
             <div className="contact-card-image" style={{backgroundColor: '#'+(Math.random() * 1000000).toFixed(0), opacity: 0.8}}>
                 <div className="image-text">{data.name[0].toUpperCase()}</div>
@@ -13,5 +13,8 @@ export default class ContactCard extends Component {
         <div className="contact-card-content">{data.name}</div>
       </div>
     )
+  }
+  handleClick = (data) => {
+     this.props.changeReciever(data.name);
   }
 }
