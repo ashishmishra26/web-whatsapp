@@ -6,7 +6,8 @@
     "axios": "^0.18.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
     "start": "set HTTPS=true && react-scripts start",

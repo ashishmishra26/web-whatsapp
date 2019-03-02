@@ -1,20 +1,35 @@
 import React, { Component } from 'react'
 
 export default class ContactCard extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      imageColor: ''
+    }
+  }
   render() {
-    let {data} = this.props;  
+    let {data, disableClick} = this.props,
+    {imageColor} = this.state;
     return (
-      <div className="contact-card" onClick={()=>{this.handleClick(data)}}>
+      <div className="contact-card" onClick={(e)=>{!disableClick && this.handleClick(e, data)}}>
         <div className="contact-card-image-container">
-            <div className="contact-card-image" style={{backgroundColor: '#'+(Math.random() * 1000000).toFixed(0), opacity: 0.8}}>
+            <div className="contact-card-image" style={{backgroundColor: imageColor.length ? imageColor : this.getColor(), opacity: 0.8}}>
                 <div className="image-text">{data.name[0].toUpperCase()}</div>
             </div>
         </div>
-        <div className="contact-card-content">{data.name}</div>
+        <div className="contact-card-content">{data.name.toString()}</div>
       </div>
     )
   }
-  handleClick = (data) => {
+  handleClick = (e, data) => {
      this.props.changeReciever(data.name);
+    //  for(const iterator of document.getElementsByClassName('contact-card-content')) {
+    //   iterator.classList.remove('selected')
+    //  }
+    //  e.target.classList.toggle('selected');
+  }
+  getColor () {
+    let color = '#'+(Math.random() * 1000000).toFixed(0);
+    this.setState({imageColor: color});
   }
 }

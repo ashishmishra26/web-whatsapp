@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:8000');
 
 export default class ComposeBox extends Component {
   constructor (props) {
@@ -20,17 +22,35 @@ export default class ComposeBox extends Component {
   }
   addMessage = (e, message) => {
     if (message.length && this.props.reciever.length) {
+      socket.emit('message', message);
+
       this.props.updateConversation({
         sender: this.props.currentUser,
         reciever: this.props.reciever,
         content: message,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        id: (Math.random()*1000000).toFixed()
       });
+
       this.props.addContactedContact({name: this.props.reciever});
       this.setState({message: ''});
+
       var div = document.getElementById("chat");
       div.scrollTop = div.scrollHeight;
     }
     e.preventDefault();
+  }
+  componentDidMount() {
+    socket.on('chat', (data) => {
+      this.props.updateConversation({
+        sender: this.props.reciever,
+        reciever: this.props.currentUser,
+        content: data,
+        timestamp: Date.now(),
+        id: (Math.random()*1000000).toFixed()
+      });
+      var div = document.getElementById("chat");
+      div.scrollTop = div.scrollHeight;
+    });
   }
 }

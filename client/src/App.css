@@ -29,11 +29,13 @@
 .left-header {
   background-color: #EEEEEE;
   height: 8vh;
+  padding-bottom: 5px;
 }
 
 .right-header {
   background-color: #E0EEEE;
   height: 8vh;
+  padding-bottom: 5px;
 }
 
 .sidebar-search {
@@ -211,6 +213,9 @@
 }
 
 .message-content-left {
+  display: flex;
+  flex-direction: column;
+  height: 30px;
   background-color: #ffffff;
   padding: 10px;
   border-radius: 5px;
@@ -219,9 +224,22 @@
 }
 
 .message-content-right {
+  display: flex;
+  flex-direction: column;
+  height: 30px;
   background-color: #bff595;
   padding: 10px;
   border-radius: 5px;
   font-weight: 400;
   float: right;
+}
+
+.message-content-time {
+  font-size: 9px;
+  font-family: 'Roboto';
+  float: left;
+}
+
+.selected {
+  background-color: #bde7e7;
 }

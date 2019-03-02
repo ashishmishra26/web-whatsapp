@@ -20,16 +20,22 @@ class App extends Component {
     let {allContact, contactedContact} = this.state;
     return (
       <div className="App">
-       <SideBar allContact={allContact} contactedContact={contactedContact} changeReciever={this.changeReciever}/>
+       <SideBar allContact={allContact} contactedContact={contactedContact} changeReciever={this.changeReciever} currentUser={this.state.currentUser} reciever={this.state.reciever}/>
        <ChatSection conversation={this.state.conversation} currentUser={this.state.currentUser} updateConversation={this.updateConversation } reciever={this.state.reciever} addContactedContact={this.addContactedContact}/>
       </div>
     );
   }
 
+  /**
+   * method to set reciever state
+   */
   changeReciever = (reciever) => {
     this.setState({reciever: reciever});
   }
 
+  /**
+   * method to set converation state
+   */
   updateConversation = (conversation) => {
     server.post('/api/', conversation).then((response) => {
       console.log(response);
@@ -40,10 +46,22 @@ class App extends Component {
     this.setState({conversation: conv});
   }
 
+  /**method to set contacted contact
+  * 
+  */
   addContactedContact = (contact) => {
+    let contactedContact = [...this.state.contactedContact], present = false, currentUser = this.state.currentUser;
+    contactedContact.forEach(cont => {
+      if(cont.name === (contact.name || currentUser)) {
+        present = true;
+      }
+    });
+    if (!present) {
+    contact['id'] = (Math.random()*100000000).toFixed(0);
     this.setState({contactedContact: [...this.state.contactedContact, contact]});
+    }
   }
-
+  
   componentDidMount () {
     server.get('/api').then((response) => {
       this.setState({conversation: response.data});
@@ -59,7 +77,9 @@ class App extends Component {
       recievers[message.reciever.toLowerCase()] = {name: message.reciever};
     });
     for (let key in recievers) {
+      if (recievers[key].name !== this.state.currentUser) {
       result.push(recievers[key]);
+      }
     }
     this.setState({contactedContact: result});
   }

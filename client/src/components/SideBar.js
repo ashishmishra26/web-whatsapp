@@ -12,11 +12,11 @@ export default class SideBar extends Component {
     }
   }
   render() {
-    let {allContact, contactedContact, changeReciever} = this.props,
+    let {allContact, contactedContact, changeReciever, currentUser, reciever} = this.props,
     {searchText} = this.state;
     return (
       <div className="sidebar">
-        <Header class="left-header"/>
+        <Header class="left-header" currentUser={currentUser} reciever={reciever}/>
         <SearchBox searchText={searchText} handleSearchText={this.handleSearchText} isActive={this.state.isActive} handleActive={this.handleActive}/>
         <Contact allContact={allContact} contactedContact={contactedContact} searchText={searchText} changeReciever={changeReciever} isActive={this.state.isActive} handleActive={this.handleActive}/>
       </div>

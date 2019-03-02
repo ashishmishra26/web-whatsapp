@@ -16,12 +16,16 @@ export default class Contact extends Component {
     });
     visibleContact = contactedContact.map(contact => {
         if (contact.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
-            return <ContactCard key={contact.name} data={contact} changeReciever={changeReciever}/>
+            return <ContactCard key={contact.contact+contact.name} data={contact} changeReciever={changeReciever}/>
+        } else {
+          return null;
         }
     })
     otherContacts = otherContacts.map(contact => {
       if (contact.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
-          return <ContactCard key={contact.name} data={contact} changeReciever={changeReciever}/>
+          return <ContactCard key={contact.id} data={contact} changeReciever={changeReciever}/>
+      } else {
+        return null;
       }
     })
     return (
