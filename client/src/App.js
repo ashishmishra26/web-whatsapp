@@ -9,11 +9,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: users[0].name,
+      currentUser: 'Ashish Mishra',
       allContact: users,
-      contactedContact: [users[1]],
       reciever: '',
-      conversation: []
+      conversation: [],
+      contactedContact: [],
     }
   }
   render() {
@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div className="App">
        <SideBar allContact={allContact} contactedContact={contactedContact} changeReciever={this.changeReciever}/>
-       <ChatSection conversation={this.state.conversation} currentUser={this.state.currentUser} updateConversation={this.updateConversation } reciever={this.state.reciever}/>
+       <ChatSection conversation={this.state.conversation} currentUser={this.state.currentUser} updateConversation={this.updateConversation } reciever={this.state.reciever} addContactedContact={this.addContactedContact}/>
       </div>
     );
   }
@@ -36,22 +36,32 @@ class App extends Component {
     }).catch(err => {
       console.log(err);
     });
-    server.get('/api').then((response) => {
-      console.log(response.data);
-      this.setState({conversation: response.data})
-    })
-    // let conv = [...this.state.conversation, conversation];
-    // this.setState({conversation: conv});
+    let conv = [...this.state.conversation, conversation];
+    this.setState({conversation: conv});
+  }
+
+  addContactedContact = (contact) => {
+    this.setState({contactedContact: [...this.state.contactedContact, contact]});
   }
 
   componentDidMount () {
-    console.log('hi');
     server.get('/api').then((response) => {
-      console.log(response.data)
       this.setState({conversation: response.data});
+      this.extractContactedContact();
     }).catch(err => {
       console.log(err);
     })
+  }
+
+  extractContactedContact = () => {
+    let data = [...this.state.conversation], recievers = {}, result = [];
+      data.forEach(message => {
+      recievers[message.reciever.toLowerCase()] = {name: message.reciever};
+    });
+    for (let key in recievers) {
+      result.push(recievers[key]);
+    }
+    this.setState({contactedContact: result});
   }
 }
 

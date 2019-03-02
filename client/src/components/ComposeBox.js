@@ -19,13 +19,14 @@ export default class ComposeBox extends Component {
     this.setState({message: value});
   }
   addMessage = (e, message) => {
-    if (message.length) {
+    if (message.length && this.props.reciever.length) {
       this.props.updateConversation({
         sender: this.props.currentUser,
         reciever: this.props.reciever,
         content: message,
         timestamp: Date.now()
       });
+      this.props.addContactedContact({name: this.props.reciever});
       this.setState({message: ''});
       var div = document.getElementById("chat");
       div.scrollTop = div.scrollHeight;

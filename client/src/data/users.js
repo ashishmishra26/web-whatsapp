@@ -1,51 +1,33 @@
 var users = [
     {
-        name: 'Ashish Mishra',
-        contact: '9038706860'
+        name: 'Supratik Basu'
     },
     {
-        name: 'Supratik Basu',
-        contact: '9038706861'
+        name: 'Ashok Mandal'
     },
     {
-        name: 'Ashok Mandal',
-        contact: '9038706862'
+        name: 'Rahul Das'
     },
     {
-        name: 'Rahul Das',
-        contact: '9038706863'
+        name: 'Priyanjit Dey'
     },
     {
-        name: 'Priyanjit Dey',
-        contact: '9038706864'
+        name: 'Md Owais'
     },
     {
-        name: 'Md Owais',
-        contact: '9038706865'
+        name: 'Kishan Ayekpam'
     },
     {
-        name: 'Rohan Dey',
-        contact: '9038706866'
+        name: 'Souvik Jana'
     },
     {
-        name: 'Kishan Ayekpam',
-        contact: '9038706867'
+        name: 'Rohan Dey'
     },
     {
-        name: 'Souvik Jana',
-        contact: '9038706868'
+        name: 'Rohan Dey2'
     },
     {
-        name: 'Rohan Dey',
-        contact: '9038706869'
-    },
-    {
-        name: 'Rohan Dey2',
-        contact: '9038706870'
-    },
-    {
-        name: 'Rohan Dey3',
-        contact: '9038706871'
+        name: 'Rohan Dey3'
     }
 ]
 

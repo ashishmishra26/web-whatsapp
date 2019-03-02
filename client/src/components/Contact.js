@@ -6,16 +6,22 @@ export default class Contact extends Component {
     let {allContact, contactedContact, changeReciever, isActive, searchText} = this.props,
     visibleContact = [],
     otherContacts = allContact.filter(contact => {
-      return contactedContact.indexOf(contact) === -1;
+      let present = true;
+      contactedContact.forEach(element => {
+        if(element.name === contact.name) {
+          present = false;
+        }
+      });
+      return present;
     });
     visibleContact = contactedContact.map(contact => {
         if (contact.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
-            return <ContactCard key={contact.contact} data={contact} changeReciever={changeReciever}/>
+            return <ContactCard key={contact.name} data={contact} changeReciever={changeReciever}/>
         }
     })
     otherContacts = otherContacts.map(contact => {
-      if (searchText.length && contact.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
-          return <ContactCard key={contact.contact} data={contact} changeReciever={changeReciever}/>
+      if (contact.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
+          return <ContactCard key={contact.name} data={contact} changeReciever={changeReciever}/>
       }
     })
     return (
