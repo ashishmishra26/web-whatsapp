@@ -12,12 +12,18 @@ export default class SearchBox extends Component {
       </div>
     )
   }
+  /**
+   * click handler for search box
+   */
   handleClick = (value) => {
     this.props.handleActive(value);
     if (!value) {
       this.props.handleSearchText('');
     }
   }
+  /**
+   * handler for search text
+   */
   handleSearchText = (e) => {
     this.props.handleSearchText(e.target.value);
   }

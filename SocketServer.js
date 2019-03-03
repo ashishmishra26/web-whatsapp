@@ -12,14 +12,17 @@ var io = socket(server);
 io.on('connection', function (socket) {
     console.log('made socket connection');
     socket.on('message', function (data) {
-            io.sockets.emit('chat', generateMessage());
+            io.sockets.emit('typing', true);
+            setTimeout(()=>{
+              io.sockets.emit('chat', generateMessage());
+            }, Math.random()*7000);
     });
 })
 
 function generateMessage() {
     var text = "",
     possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-    length = (Math.random()*10).toFixed(0) || 3;
+    length = Math.round((Math.random()*10)) || 3;
 
     for (var i = 0; i < length; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length));

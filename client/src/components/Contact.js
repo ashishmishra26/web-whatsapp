@@ -5,6 +5,7 @@ export default class Contact extends Component {
   render() {
     let {allContact, contactedContact, changeReciever, isActive, searchText} = this.props,
     visibleContact = [],
+    // filter contacted contacts from all contacts
     otherContacts = allContact.filter(contact => {
       let present = true;
       contactedContact.forEach(element => {
@@ -14,25 +15,30 @@ export default class Contact extends Component {
       });
       return present;
     });
+
+    // create contacted contact array consisting of ContactCard component
     visibleContact = contactedContact.map(contact => {
         if (contact.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
-            return <ContactCard key={contact.contact+contact.name} data={contact} changeReciever={changeReciever}/>
+            return <ContactCard key={contact.contact + contact.name} data={contact} changeReciever={changeReciever}/>
         } else {
           return null;
         }
-    })
+    });
+
+    // create all other contact array consisting of ContactCard component
     otherContacts = otherContacts.map(contact => {
       if (contact.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1) {
           return <ContactCard key={contact.id} data={contact} changeReciever={changeReciever}/>
       } else {
         return null;
       }
-    })
+    });
+
     return (
       <div className="contact">
-        <p className={isActive ? 'contact-title': 'hide'}>Chats</p>
+        <p className={isActive ? 'contact-title': 'hide'}>Chats</p> {/* show this text only when isActive is true*/}
         {visibleContact}
-        <p className={isActive ? 'contact-title': 'hide'}>Contacts</p>
+        <p className={isActive ? 'contact-title': 'hide'}>Contacts</p> {/* show this text only when isActive is true*/}
         {isActive && otherContacts}
       </div>
     )

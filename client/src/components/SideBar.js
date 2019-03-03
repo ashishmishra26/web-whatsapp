@@ -7,10 +7,11 @@ export default class SideBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: false,
+      isActive: false, //state to store the information if the search is being made or not
       searchText: ''
     }
   }
+  
   render() {
     let {allContact, contactedContact, changeReciever, currentUser, reciever} = this.props,
     {searchText} = this.state;
@@ -22,10 +23,15 @@ export default class SideBar extends Component {
       </div>
     )
   }
+  /**
+   * method to set search text state
+   */
   handleSearchText = (value) => {
     this.setState({searchText: value})
   }
-
+  /**
+   * method to set isActive state
+   */
   handleActive = (value) => {
     this.setState({isActive: value});
   }

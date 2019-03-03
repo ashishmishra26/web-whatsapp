@@ -5,7 +5,7 @@
   flex-direction: row;
   font-family: 'Poppins';
   box-sizing: border-box;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -166,10 +166,6 @@
 .compose-box {
   height: 70px;
   background-color: #efefef;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .compose-search-box {
@@ -189,7 +185,7 @@
 .btn {
   border: none;
   background-color: #efefef;
-  cursor: pointer;
+  cursor: pointer; 
 }
 
 .chat-box {
@@ -201,6 +197,10 @@
   padding-left: 20px;
   padding-right: 20px; 
   background-color:#EBF5EE;
+}
+
+.chat-box-full {
+  height: 100vh;
 }
 
 .message-row {
@@ -242,4 +242,9 @@
 
 .selected {
   background-color: #bde7e7;
+}
+
+.typing-message {
+  font-size: 15px;
+  color: gray;
 }

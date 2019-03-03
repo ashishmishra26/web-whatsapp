@@ -8,7 +8,7 @@ export default class ChatSection extends Component {
     let { conversation, currentUser, updateConversation, reciever, addContactedContact} = this.props; 
     return (
       <div className="chat-section">
-        <Header class="right-header" currentUser={currentUser} reciever={reciever}/>
+        <Header class={reciever.length ? 'right-header' : 'hide'} currentUser={currentUser} reciever={reciever}/>
         <ChatBox conversation={conversation} currentUser={currentUser} reciever={reciever}/>
         <ComposeBox conversation={conversation} updateConversation={updateConversation} currentUser={currentUser} reciever={reciever} addContactedContact={addContactedContact}/>
       </div>

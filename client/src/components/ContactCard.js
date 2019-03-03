@@ -7,9 +7,11 @@ export default class ContactCard extends Component {
       imageColor: ''
     }
   }
+
   render() {
     let {data, disableClick} = this.props,
     {imageColor} = this.state;
+
     return (
       <div className="contact-card" onClick={(e)=>{!disableClick && this.handleClick(e, data)}}>
         <div className="contact-card-image-container">
@@ -21,13 +23,20 @@ export default class ContactCard extends Component {
       </div>
     )
   }
+  /**
+   * handler for contact card click
+   */
   handleClick = (e, data) => {
-     this.props.changeReciever(data.name);
-    //  for(const iterator of document.getElementsByClassName('contact-card-content')) {
-    //   iterator.classList.remove('selected')
-    //  }
-    //  e.target.classList.toggle('selected');
+     this.props.changeReciever(data.name); // update the reciever
+     // change the color of selected card
+     for(const iterator of document.getElementsByClassName('contact-card-content')) {
+      iterator.classList.remove('selected')
+     }
+     e.target.classList.toggle('selected');
   }
+  /**
+   * method to assign a color to contacts initially
+   */
   getColor () {
     let color = '#'+(Math.random() * 1000000).toFixed(0);
     this.setState({imageColor: color});

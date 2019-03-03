@@ -9,13 +9,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: 'Ashish Mishra',
-      allContact: users,
-      reciever: '',
-      conversation: [],
-      contactedContact: [],
+      currentUser: 'Ashish Mishra', // state to store current user
+      allContact: users, // all user list, hardcoded as of now
+      reciever: '', // current reciever state
+      conversation: [], // all conversation data
+      contactedContact: [], // list of contacted contact (recent chats)
     }
   }
+
   render() {
     let {allContact, contactedContact} = this.state;
     return (
@@ -34,37 +35,42 @@ class App extends Component {
   }
 
   /**
-   * method to set converation state
+   * method to update converation state
    */
   updateConversation = (conversation) => {
     server.post('/api/', conversation).then((response) => {
-      console.log(response);
     }).catch(err => {
       console.log(err);
     });
+
     let conv = [...this.state.conversation, conversation];
     this.setState({conversation: conv});
   }
 
-  /**method to set contacted contact
-  * 
+  /**
+  * method to set contacted contact
   */
   addContactedContact = (contact) => {
     let contactedContact = [...this.state.contactedContact], present = false, currentUser = this.state.currentUser;
+    
+    // contacted contact should not contain the current user
     contactedContact.forEach(cont => {
       if(cont.name === (contact.name || currentUser)) {
         present = true;
       }
     });
+
     if (!present) {
-    contact['id'] = (Math.random()*100000000).toFixed(0);
+    contact['id'] = (Math.random()*100000000).toFixed(0); // assign a randomly genrated id to each contacted contact
     this.setState({contactedContact: [...this.state.contactedContact, contact]});
     }
   }
   
   componentDidMount () {
+    // fetch data from database when component mount
     server.get('/api').then((response) => {
       this.setState({conversation: response.data});
+      // from conversation data extract the recent chat contacts 
       this.extractContactedContact();
     }).catch(err => {
       console.log(err);

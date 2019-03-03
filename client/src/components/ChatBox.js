@@ -4,19 +4,22 @@ export default class ChatBox extends Component {
   render() {
       let { conversation, currentUser, reciever } = this.props,
       messages = conversation.map((message) => {
-          if ((message.sender.toLowerCase() === currentUser.toLowerCase() && message.reciever.toLowerCase() === reciever.toLowerCase()) || (message.sender.toLowerCase() === reciever.toLowerCase() && message.reciever.toLowerCase() === currentUser.toLowerCase())) {
+        let mssgSender = message.sender.toLowerCase(),
+            mssgReciever = message.reciever.toLowerCase();
+        // make the message row div iff sender and reciever is either currentUser or currentReciever  
+        if ((mssgSender === currentUser.toLowerCase() && mssgReciever === reciever.toLowerCase()) || (mssgSender === reciever.toLowerCase() && mssgReciever === currentUser.toLowerCase())) {
          return (<div key={message.id} className="message-row">
                     <div className={message.sender.toLowerCase() === currentUser.toLowerCase() ? 'message-content-right': 'message-content-left'}>
                         {message.content}
                         <span className="message-content-time">{`${new Date(message.timestamp).getHours()}:${new Date(message.timestamp).getMinutes()}`}</span>
                     </div>
                 </div>)
-          } else {
+        } else {
             return null;
-          }
+        }
       });
     return (
-      <div className="chat-box" id="chat">
+      <div className={this.props.reciever.length ? 'chat-box' : 'chat-box-full'} id="chat">
         {messages}
       </div>
     )
