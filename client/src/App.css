@@ -182,9 +182,13 @@
   font-family: 'Roboto'
 }
 
+.form {
+  margin-top: 10px;
+}
+
 .btn {
   border: none;
-  background-color: #efefef;
+  background-color: #F7F9FA;
   cursor: pointer; 
 }
 
