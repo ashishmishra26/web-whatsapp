@@ -4,7 +4,10 @@
   "description": "",
   "main": "SocketServer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "socket": "node run SocketServer.js",
+    "server": "node server.js",
+    "app": "cd client && npm run start"
   },
   "repository": {
     "type": "git",

@@ -19,6 +19,10 @@ const conversationSchema = Schema({
     timestamp: {
         type: Number,
         required: [true, 'timestamp is required']
+    },
+    id: {
+        type: Number,
+        required: [true, 'id is required']
     }
 });
 
