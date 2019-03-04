@@ -14,7 +14,7 @@ export default class ContactCard extends Component {
 
     return (
       <div className="contact-card" onClick={(e)=>{!disableClick && this.handleClick(e, data)}}>
-        <div className="contact-card-image-container">
+        <div className={(data.name === reciever) ? "contact-card-image-container selected": 'contact-card-image-container'}>
             <div className="contact-card-image" style={{backgroundColor: imageColor.length ? imageColor : this.getColor(), opacity: 0.8}}>
                 <div className="image-text">{data.name[0].toUpperCase()}</div>
             </div>

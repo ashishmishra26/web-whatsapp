@@ -122,6 +122,8 @@
   justify-content: center;
   align-items: center;
   padding: 0 5px 0 3px;
+  margin: 0px !important;
+  height: 99%;
 }
 
 .contact-card-image {
